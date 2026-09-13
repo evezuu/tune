@@ -194,26 +194,47 @@ document.getElementById("clickplay").addEventListener("click", async () => {
 const symbols = ["♬", "♫", "♪", "♩"]
 const container = document.body;
 
+const notes = [];
+
 for (let i = 0; i < 30; i++) {
     const note = document.createElement('span')
     note.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 
     note.style.position = "absolute";
+    
+   let x;
+   let y;
+   let StopNow;
 
-    note.style.left = Math.random() * 100 + 'vw';
-    note.style.top = Math.random() * 100 + 'vh';
+   let attempts = 0;
+   const maxAttempts = 30;
 
-    note.style.fontSize = (Math.random() * 3 + 1) + 'rem';
-    note.style.opacity = '0.2';
-    note.style.pointerEvents = 'none';
-    note.style.zIndex = '-1';
+   do {
+    x = Math.random() * 100;
+    y = Math.random() * 100;
 
+    StopNow = notes.some(n => {
+        const distanceX = Math.abs(x - n.x);
+        const distanceY = Math.abs(y - n.y);
+        return distanceX < 10 && distanceY < 10;
+    });
+   } 
+
+   while (StopNow);
+   note.style.left = x + "vw";
+   note.style.top = y + "vh";
+   
+   note.style.fontSize = (Math.random() * 3 + 1) + 'rem';
+   note.style.opacity = '0.15';
+   note.style.pointerEvents = 'none';
+   note.style.zIndex = '-2';
+    
     notes.push({
         el: note,
-        x: parseFloat(note.style.left),
-        y: parseFloat(note.style.top),
+        x: x,
+        y: y,
         vx: (Math.random() - 0.5) * 0.02,
-        vy: (Math.random() - 0.5 * 0.2)
+        vy: (Math.random() - 0.5) * 0.2
     });
 
     container.appendChild(note);

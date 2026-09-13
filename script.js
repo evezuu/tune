@@ -1,29 +1,223 @@
 document.getElementById("clickplay").addEventListener("click", async () => {
     await Tone.start();
 
+
+    Tone.Transport.bpm.value = 90;
+    
     const synth = new Tone.Synth().toDestination();
-    const drum = new Tone.MembraneSynth().toDestination();
+
+    const piano = new Tone.Synth({
+        oscillator: {
+            type: "triangle"
+        },
+    }).toDestination();
+    const pad = new Tone.PolySynth(Tone.Synth).toDestination();
+
+    const bass = new Tone.MonoSynth({
+        oscillator: {
+            type: "triangle"
+        }
+    }).toDestination();
+
+    const lead = new Tone.Synth({
+        oscillator: {
+            type: "sine"
+        }
+    }).toDestination();
 
     // MUSIC AYAYAAA
 
-    const melody = [
-        "C4",
-        "E4",
-        "G4",
-        "E4"
+
+    // chords- Am-F-C-G
+    const chords = [
+        ["A3","C4","E4"],
+        ["F3","A3","C4"],
+        ["C3","E3","G3"],
+        ["G3","B3","D4"]
     ];
 
-    melody.forEach((note, index) => {
-        synth.triggerAttackRelease(
+
+    // bassbassbass
+    const bassNotes = ["A2", "F2", "C2", "G2"];
+
+
+    // MELODY !!
+    const melody = [
+        "E5", "G5", "A5", "G5",
+        "E5", "D5", "C5", "D5"
+    ];
+
+
+
+
+    let sectionStart = 0;
+
+
+    // intro (js piano)
+    melody.forEach((note, i) => {
+        piano.triggerAttackRelease(
             note,
             "8n",
-            `+${index * 0.5}`
+            `+${sectionStart + i * 0.5}`
+        );
+    });
+    
+    sectionStart += 8;
+
+    // add... (pad)
+    chords.forEach((chord, i) => {
+        pad.triggerAttackRelease(
+            chord,
+            "2n",
+            `+${sectionStart + i *2}`
         );
     });
 
-    drum.triggerAttackRelease("C2", "8n", "+0");
-    drum.triggerAttackRelease("C2", "8n", "+1");
-    drum.triggerAttackRelease("C2", "8n", "+2");
-    drum.triggerAttackRelease("C2", "8n", "+3");
+    melody.forEach((note, i) => {
+        piano.triggerAttackRelease(
+            note,
+            "8n",
+            `+${sectionStart + i * 0.5}`
+        );
+    });
+
+    sectionStart += 8;
+
+    // ADD (bass)
+    chords.forEach((chord, i) => {
+        pad.triggerAttackRelease(
+            chord,
+            "2n",
+            `+${sectionStart + i *2}`
+        );
+
+        bass.triggerAttackRelease(
+            bassNotes[i],
+            "2n",
+            `+${sectionStart + i * 2}`
+        );
+    });
+
+    melody.forEach((note, i) => {
+        piano.triggerAttackRelease(
+            note,
+            "8n",
+            `+${sectionStart + i * 0.5}`
+        );
+    });
+
+    sectionStart += 8;
+
+
+    // MORE
+    chords.forEach((chord, i) => {
+        pad.triggerAttackRelease(
+            chord,
+            "2n",
+            `+${sectionStart + i *2}`
+        );
+
+        bass.triggerAttackRelease(
+            bassNotes[i],
+            "2n",
+            `+${sectionStart + i * 2}`
+        );
+    });
+
+    melody.forEach((note, i) => {
+        piano.triggerAttackRelease(
+            note,
+            "8n",
+            `+${sectionStart + i * 0.5}`
+        );
+    });
+
+    sectionStart += 8;
+
+    // FULLLLLL
+    chords.forEach((chord, i) => {
+        pad.triggerAttackRelease(
+            chord,
+            "2n",
+            `+${sectionStart + i *2}`
+        );
+
+        bass.triggerAttackRelease(
+            bassNotes[i],
+            "2n",
+            `+${sectionStart + i * 2}`
+        );
+    });
+
+    melody.forEach((note, i) => {
+        piano.triggerAttackRelease(
+            note,
+            "8n",
+            `+${sectionStart + i * 0.5}`
+        );
+    });
+
+    sectionStart += 8;
+
+    // ending
+    chords.forEach((chord, i) => {
+        pad.triggerAttackRelease(
+            chord,
+            "2n",
+            `+${sectionStart + i *2}`
+        );
+
+        bass.triggerAttackRelease(
+            bassNotes[i],
+            "2n",
+            `+${sectionStart + i * 2}`
+        );
+    });
+
+    melody.forEach((note, i) => {
+        piano.triggerAttackRelease(
+            note,
+            "8n",
+            `+${sectionStart + i * 0.5}`
+        );
+    });
 });
+
+
+
+
+
+
+
+// DESIGNNN
+
+const symbols = ["♬", "♫", "♪", "♩"]
+const container = document.body;
+
+for (let i = 0; i < 30; i++) {
+    const note = document.createElement('span')
+    note.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+    note.style.position = "absolute";
+
+    note.style.left = Math.random() * 100 + 'vw';
+    note.style.top = Math.random() * 100 + 'vh';
+
+    note.style.fontSize = (Math.random() * 3 + 1) + 'rem';
+    note.style.opacity = '0.2';
+    note.style.pointerEvents = 'none';
+    note.style.zIndex = '-1';
+
+    notes.push({
+        el: note,
+        x: parseFloat(note.style.left),
+        y: parseFloat(note.style.top),
+        vx: (Math.random() - 0.5) * 0.02,
+        vy: (Math.random() - 0.5 * 0.2)
+    });
+
+    container.appendChild(note);
+}
+
+
 

@@ -1,0 +1,50 @@
+body {
+    background:
+        rgb(27, 21, 56) 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "DynaPuff";
+
+    color: rgb(77, 71, 117);
+
+    word-spacing: 5px;
+
+
+}
+
+h1 {
+    letter-spacing: 2px;
+    margin-top: 60px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+#clickplay {
+    margin: 20px;
+    padding: 20px 40px;
+
+    border: none;
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-family: "DynaPuff";
+
+    color:rgb(116, 116, 150);
+    background-color: rgb(48, 48, 90);
+}
+
+body::before {
+    content: "♩ ♬ ♫ ♪";
+    font-size: 30px;
+
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    
+    opacity: 0.2;
+}

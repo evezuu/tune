@@ -3,6 +3,8 @@ document.getElementById("clickplay").addEventListener("click", async () => {
 
 
     Tone.Transport.bpm.value = 90;
+
+    animateNotes();
     
     const synth = new Tone.Synth().toDestination();
 
@@ -206,12 +208,9 @@ for (let i = 0; i < 30; i++) {
    let y;
    let StopNow;
 
-   let attempts = 0;
-   const maxAttempts = 30;
-
    do {
-    x = Math.random() * 100;
-    y = Math.random() * 100;
+    x = Math.random() * 90 + 5;
+    y = Math.random() * 80 + 5;
 
     StopNow = notes.some(n => {
         const distanceX = Math.abs(x - n.x);
@@ -233,12 +232,28 @@ for (let i = 0; i < 30; i++) {
         el: note,
         x: x,
         y: y,
-        vx: (Math.random() - 0.5) * 0.02,
-        vy: (Math.random() - 0.5) * 0.2
+        vx: (Math.random() - 0.5) * 0.08,
+        vy: (Math.random() - 0.5) * 0.08
     });
 
     container.appendChild(note);
 }
 
+function animateNotes() {
+    for (let n of notes) {
+        n.x += n.vx;
+        n.y += n.vy;
 
+        if (n.x > 95 || n.x < 5) {
+            n.vx *= -1;
+        }
 
+        if (n.y > 90 || n.y < 5) {
+            n.vy *= -1;
+        }
+        n.el.style.left = n.x + "vw";
+        n.el.style.top = n.y + "vh";
+    }
+
+    requestAnimationFrame(animateNotes);
+}

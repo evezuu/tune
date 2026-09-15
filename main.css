@@ -8,6 +8,7 @@ body {
     font-family: "DynaPuff";
 
     color: rgb(77, 71, 117);
+    overflow: hidden;
 
     word-spacing: 5px;
 
@@ -38,13 +39,3 @@ p {
     background-color: rgb(48, 48, 90);
 }
 
-body::before {
-    content: "♩ ♬ ♫ ♪";
-    font-size: 30px;
-
-    position: fixed;
-    bottom: 30px;
-    right: 40px;
-    
-    opacity: 0.2;
-}

@@ -198,7 +198,21 @@ const container = document.body;
 
 const notes = [];
 
-for (let i = 0; i < 30; i++) {
+let NoteAmt;
+if (window.innerWidth < 600) {
+    NoteAmt = 12;
+}
+
+else if (window.innerWidth < 6000) {
+    NoteAmt = 30;
+}
+
+else {
+    NoteAmt = 50;
+}
+
+for (let i = 0; i < NoteAmt; i++) {
+
     const note = document.createElement('span')
     note.textContent = symbols[Math.floor(Math.random() * symbols.length)];
 

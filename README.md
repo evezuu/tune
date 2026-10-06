@@ -1,1 +1,9 @@
-# tune
+# Music Project
+
+This project was mainly me learning how to make music through code! It's something I've always wanted to do, but never got the chance to until now. I mainly used this to try and learn how the basic code for making music works. This was done kind of badly because instead of assigning variables to certain melodies (not exactly sure if that's what it's called) I kind of just copy-pasted the code needed to play stuff bit by bit, but it still works so I kept it! I learn about variables a bit later, which is the reason why I didn't add those. 
+
+The project opens to a small website with a bunch of music notes around it. Once you click the "Play" button, the music starts playing and the music notes also start moving around!
+
+I really liked working on the design features of this project! Learning how to make the music notes move around in a way that I wanted to was nice. I definitely learned a lot about javascript while making this. I always struggle with that language, so I'm honestly surprised I was able to make it work the way I wanted to. I'll definitely be using this feature in the future for my next websites!
+
+Learning how to make the music was honestly really fun. I was mainly focused on trying to do the code, and I didn't put much thought into the actual music part of it so it sounds really bad so fair warning! Your ears might explode if you listen to it on full volume. In the future I would love to see if I could add more features like a pause button, a volume controller, and a play bar! I didn't do those this time because I liked how simplistic the design was without adding more buttons. The next melodies I make will definitely sound better and work better though.
